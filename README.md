@@ -20,10 +20,8 @@ A JSON tree viewer custom element based on https://github.com/summerstyle/jsonTr
 ```
 -->
 ```html
-<granite-js-dependencies-grabber 
-    id="granite-js-dependencies-grabber-demo"
-    dependencies='[{"name":"moment","url":"../moment/min/moment.min.js"},{"name":"Chart","url":"../chart.js/dist/Chart.min.js"}]' 
-    debug></granite-js-dependencies-grabber>
+<granite-json-tree-viewer 
+    data='{"firstName":"Jonh","lastName":"Smith","phones":["123-45-67","987-65-43"]}'></granite-json-tree-viewer>
 ```
 
 

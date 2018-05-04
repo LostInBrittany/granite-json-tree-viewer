@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>granite-json-tree-viewer demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../granite-json-tree-viewer.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic granite-json-tree-viewer demo</h3>
+      <demo-snippet>
+        <template>
+          <granite-json-tree-viewer 
+            data='{"firstName":"Jonh","lastName":"Smith","phones":["123-45-67","987-65-43"]}'></granite-json-tree-viewer>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

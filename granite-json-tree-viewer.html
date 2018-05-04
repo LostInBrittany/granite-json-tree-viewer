@@ -1,0 +1,101 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../granite-js-dependencies-grabber/granite-js-dependencies-grabber.html">
+
+<dom-module id="granite-json-tree-viewer">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      ul, ol {
+          list-style: none;
+          padding: 0;
+      }
+    </style>
+    <iron-ajax 
+        url="{{cssPath}}"
+        handle-as="text"
+        on-response='_onCss'
+        auto></iron-ajax>
+    <granite-js-dependencies-grabber
+        dependencies='[{"name":"jsonTree","url":"../jsonTreeViewer/libs/jsonTree/jsonTree.js"}]' 
+        on-dependency-is-ready="_onJs"
+        debug="{{debug}}"></granite-js-dependencies-grabber>
+    <div id="tree"></div>
+  </template>
+
+  <script>
+    /**
+     * `granite-json-tree-viewer`
+     * A JSON tree viewer custom element based on https://github.com/summerstyle/jsonTreeViewer
+     * Copyright 2018 Horacio Gonzalez (@LostInBrittany)
+     * Released under the MIT license (LICENSE.txt)
+     *
+     * Using JSON Tree Viewer
+     * http://github.com/summerstyle/jsonTreeViewer
+     * Copyright 2017 Vera Lobacheva (http://iamvera.com)
+     * Released under the MIT license (LICENSE.txt)
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    /* globals jsonTree */
+    class GraniteJsonTreeViewer extends Polymer.Element {
+      static get is() { return 'granite-json-tree-viewer'; }
+      static get properties() {
+        return {
+          data: {
+            type: Object,
+            observer: '_onDataChanged',
+            value: () => {},
+          },
+          cssPath: {
+            type: String,
+            value: () => `${this.importPath}../jsonTreeViewer/libs/jsonTree/jsonTree.css`,
+          },
+          jsPath: {
+            type: String,
+            value: () => `${this.importPath}../jsonTreeViewer/libs/jsonTree/jsonTree.js`,
+          },
+          /**
+           * If true, send logs to the console
+           */
+          debug: {
+            type: Boolean,
+            value: false,
+          },
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+      }
+
+      _onCss(evt, ironRequest) {
+        let style = document.createElement('style');
+        style.innerHTML = ironRequest.response
+          .replace(`background-image: url('icons.svg')`,
+            `background-image: url('${this.importPath}../jsonTreeViewer/libs/jsonTree/icons.svg')`);
+        this.shadowRoot.appendChild(style);
+      }
+
+      _onDataChanged() {
+        if (this._jsReady) {
+          this.tree.loadData(this.data);
+        }
+      }
+
+      _onJs() {
+        this.tree = jsonTree.create(this.data, this.$.tree);
+        this._jsReady = true;
+      }
+
+
+    }
+
+    window.customElements.define(GraniteJsonTreeViewer.is, GraniteJsonTreeViewer);
+  </script>
+</dom-module>

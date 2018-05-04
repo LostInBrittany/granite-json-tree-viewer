@@ -2,6 +2,7 @@
   "name": "granite-json-tree-viewer",
   "description": "A JSON tree viewer custom element based on https://github.com/summerstyle/jsonTreeViewer",
   "main": "granite-json-tree-viewer.html",
+  "license": "Apache-2.0",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "jsonTreeViewer": "summerstyle/jsonTreeViewer#^0.6.0",

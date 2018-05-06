@@ -24,7 +24,23 @@ A JSON tree viewer custom element based on https://github.com/summerstyle/jsonTr
     data='{"firstName":"Jonh","lastName":"Smith","phones":["123-45-67","987-65-43"]}'></granite-json-tree-viewer>
 ```
 
+### Styling
 
+`<granite-json-tree-viewer` provides the following custom properties and mixins
+for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--jsontree-bg` | Mixin applied to the background of the tree | `{}`
+`--jsontree-tree` | Mixin applied to the tree | `{}`
+`--jsontree-child` | Mixin applied to the child elements | `{}`
+`--jsontree-label` | Mixin applied to the JSON labels | `{}`
+`--jsontree-value` | Mixin applied to the JSON values | `{}`
+`--jsontree-value-string` | Mixin applied to the JSON string values | `{}`
+`--jsontree-value-number` | Mixin applied to the JSON number values | `{}`
+`--jsontree-value-boolean` | Mixin applied to the JSON boolean values | `{}`
+`--jsontree-value-null` | Mixin applied to the JSON null values | `{}`
+`--jsontree-expand-button` | Mixin applied to the expand button | `{}`
 
 ## Install the Polymer-CLI
 

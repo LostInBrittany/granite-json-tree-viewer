@@ -2,6 +2,8 @@
 
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <link rel="import" href="../granite-js-dependencies-grabber/granite-js-dependencies-grabber.html">
+<!-- import CSS mixins polyfill -->
+<link rel="import" href="../shadycss/apply-shim.html">
 
 <dom-module id="granite-json-tree-viewer">
   <template>
@@ -12,6 +14,49 @@
       ul, ol {
           list-style: none;
           padding: 0;
+      }
+      /* Background for the tree. */
+      #tree .jsontree_bg {
+        @apply --jsontree-bg;
+      }
+
+      /* Styles for the container of the tree (e.g. fonts, margins etc.) */
+      #tree .jsontree_tree {
+        @apply --jsontree-tree;
+      }
+
+      /* Styles for a list of child nodes */
+      #tree .jsontree_child-nodes {
+        @apply --jsontree-child; 
+      }
+      
+      #tree .jsontree_label {
+        @apply --jsontree-label; 
+      }
+      #tree .jsontree_node_marked > .jsontree_label-wrapper > .jsontree_label {
+        @apply --jsontree-label-marked; 
+      }
+
+      /* Styles for values */
+      #tree .jsontree_value {
+        @apply --jsontree-value;
+      }
+      #tree .jsontree_value_null {
+        @apply --jsontree-value-null;
+      }
+      #tree .jsontree_value_string {
+        @apply --jsontree-value-string;
+      }
+      #tree .jsontree_value_number {
+        @apply --jsontree-value-number;
+      }
+      #tree .jsontree_value_boolean {
+        @apply --jsontree-value-boolean;
+      }
+
+      /* Styles for active elements */
+      #tree .jsontree_expand-button {
+        @apply --jsontree-expand-button;
       }
     </style>
     <iron-ajax 

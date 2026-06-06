@@ -1,0 +1,47 @@
+{
+  "name": "@granite-elements/granite-json-tree-viewer",
+  "version": "2.0.0",
+  "description": "A JSON tree viewer Lit element based on summerstyle/jsonTreeViewer",
+  "license": "MIT",
+  "type": "module",
+  "main": "granite-json-tree-viewer.js",
+  "module": "granite-json-tree-viewer.js",
+  "exports": {
+    ".": "./granite-json-tree-viewer.js",
+    "./src/jsontree.js": "./src/jsontree.js",
+    "./src/jsontree-styles.js": "./src/jsontree-styles.js"
+  },
+  "files": [
+    "granite-json-tree-viewer.js",
+    "src/",
+    "demo/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "web-components",
+    "lit",
+    "lit-element",
+    "json",
+    "json-viewer",
+    "tree"
+  ],
+  "author": "Horacio Gonzalez <horacio.gonzalez@gmail.com> (@LostInBrittany)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LostInBrittany/granite-json-tree-viewer.git"
+  },
+  "scripts": {
+    "start": "web-dev-server --node-resolve --open demo/ --watch",
+    "test": "web-test-runner \"test/**/*.test.js\" --node-resolve"
+  },
+  "dependencies": {
+    "lit": "^3.0.0"
+  },
+  "devDependencies": {
+    "@open-wc/testing": "^4.0.0",
+    "@web/dev-server": "^0.4.6",
+    "@web/test-runner": "^0.20.2"
+  }
+}

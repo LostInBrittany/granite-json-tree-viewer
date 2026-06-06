@@ -6,31 +6,77 @@
 
     <title>granite-json-tree-viewer demo</title>
 
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../granite-json-tree-viewer.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../granite-json-tree-viewer.html">
-
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-        demo-snippet {
-          --jsontree-value-string: {
-            color: #006600;
-          }
-        }
-      </style>
-    </custom-style>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 50rem;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+      section {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+      }
+      .styled {
+        --jsontree-string-color: #006600;
+        --jsontree-number-color: #aa3300;
+        --jsontree-font-family: 'Fira Code', monospace;
+      }
+      .styled::part(label) {
+        color: #444488;
+      }
+      #jsonpath-output {
+        font-family: monospace;
+        color: #444488;
+      }
+    </style>
   </head>
   <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic granite-json-tree-viewer demo</h3>
-      <demo-snippet>
-        <template>
-          <granite-json-tree-viewer 
-            data='{"firstName":"John","lastName":"Smith","phones":["123-45-67","987-65-43"]}'></granite-json-tree-viewer>
-        </template>
-      </demo-snippet>
-    </div>
+    <h1>granite-json-tree-viewer demo</h1>
+
+    <section>
+      <h3>Basic demo</h3>
+      <p>
+        Click on a label or on <code>…</code> to expand/collapse
+        (Ctrl/Cmd+click: recursively), Alt+click to mark a node,
+        Shift+click to get its JSON-path.
+      </p>
+      <granite-json-tree-viewer
+          id="basic"
+          data='{"firstName":"John","lastName":"Smith","age":42,"married":null,"phones":["123-45-67","987-65-43"],"address":{"city":"Brest","zip":"29200"}}'></granite-json-tree-viewer>
+      <p>JSON-path (Shift+click on a label): <span id="jsonpath-output">—</span></p>
+    </section>
+
+    <section>
+      <h3>Styled with CSS custom properties and <code>::part()</code></h3>
+      <granite-json-tree-viewer
+          class="styled"
+          data='{"name":"granite-json-tree-viewer","versions":[1,2],"lit":true}'></granite-json-tree-viewer>
+    </section>
+
+    <section>
+      <h3>Sorted keys (<code>sort-keys</code>)</h3>
+      <granite-json-tree-viewer
+          sort-keys
+          data='{"zebra":1,"alpha":2,"mango":3}'></granite-json-tree-viewer>
+    </section>
+
+    <section>
+      <h3>XSS test: HTML in keys and values is escaped</h3>
+      <granite-json-tree-viewer
+          data='{"&lt;img src=x onerror=alert(1)&gt;":"&lt;script&gt;alert(2)&lt;/script&gt;","nested":{"&lt;b&gt;key&lt;/b&gt;":["&lt;i&gt;value&lt;/i&gt;"]}}'></granite-json-tree-viewer>
+    </section>
+
+    <script>
+      const basic = document.querySelector('#basic');
+      const output = document.querySelector('#jsonpath-output');
+      basic.addEventListener('jsontree-jsonpath', (e) => {
+        output.textContent = e.detail.path;
+      });
+    </script>
   </body>
 </html>

@@ -2,6 +2,8 @@
 
 > A JSON tree viewer custom element, built with [Lit](https://lit.dev)
 
+🚀 **[Live demo](https://lostinbrittany.github.io/granite-json-tree-viewer/demo/)**
+
 Based on [summerstyle/jsonTreeViewer](https://github.com/summerstyle/jsonTreeViewer),
 vendored and modernized in [`src/jsontree.js`](src/jsontree.js) (see
 [Vendored library](#vendored-library) below).

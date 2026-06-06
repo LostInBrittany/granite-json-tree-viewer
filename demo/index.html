@@ -6,6 +6,19 @@
 
     <title>granite-json-tree-viewer demo</title>
 
+    <!--
+      Import map for static hosting (e.g. GitHub Pages), where bare module
+      specifiers are not resolved. Unused with `npm start`: @web/dev-server
+      rewrites the `lit` import to node_modules before the browser sees it.
+    -->
+    <script type="importmap">
+      {
+        "imports": {
+          "lit": "https://esm.run/lit@3"
+        }
+      }
+    </script>
+
     <script type="module" src="../granite-json-tree-viewer.js"></script>
 
     <style>
